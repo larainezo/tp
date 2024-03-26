@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +34,7 @@ public class PersonBuilder {
     private Telegram telegram;
     private Birthday birthday;
     private Set<FreeTimeTag> freeTimeTags;
+    private HashMap<String, ArrayList<String>> freeTime;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -115,8 +118,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code FreeTime} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFreeTime(String ... freeTime) {
+        this.freeTime = SampleDataUtil.getFreeTime(freeTime);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTags);
+        return new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTags, freeTime);
     }
 
 }

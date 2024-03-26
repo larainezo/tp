@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -68,7 +70,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<String> freeTimeTagText = argMultimap.getValue(PREFIX_FREETIMETAG);
         Set<FreeTimeTag> freeTimeTags = ParserUtil.parseFreeTimeTags(argMultimap.getAllValues(PREFIX_FREETIMETAG));
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTags);
+        Optional<String> freeTimeText = argMultimap.getValue(PREFIX_FREETIMETAG);
+        HashMap<String, ArrayList<String>> freeTimes =
+                ParserUtil.parseFreeTimes(argMultimap.getAllValues(PREFIX_FREETIMETAG));
+
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTags, freeTimes);
         return new AddCommand(person);
     }
 

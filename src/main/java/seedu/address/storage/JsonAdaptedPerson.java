@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -74,6 +75,7 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<FreeTimeTag> freeTimeTagList = new ArrayList<>();
+        final HashMap<String, ArrayList<String>> freeTimeList = new HashMap<>();
         for (JsonAdaptedFreeTimeTag freeTimeTag : freeTimeTags) {
             freeTimeTagList.add(freeTimeTag.toModelType());
         }
@@ -130,9 +132,10 @@ class JsonAdaptedPerson {
         final Birthday modelBirthday = new Birthday(birthday);
 
         final Set<FreeTimeTag> modelFreeTimeTags = new HashSet<>(freeTimeTagList);
+        final HashMap<String, ArrayList<String>> modelFreeTime = new HashMap<>(freeTimeList);
 
         return new Person(modelName, modelPhone, modelEmail, modelRoomNumber, modelTelegram, modelBirthday,
-                modelFreeTimeTags);
+                modelFreeTimeTags, modelFreeTime);
     }
 
 }

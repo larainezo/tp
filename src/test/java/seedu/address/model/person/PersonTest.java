@@ -90,7 +90,8 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
                 ALICE.getBirthday(),
-                ALICE.getTags());
+                ALICE.getTags(),
+                ALICE.getFreeTime());
         assertFalse(ALICE.equals(aliceCopyWithoutEmail));
         assertFalse(aliceCopyWithoutEmail.equals(ALICE));
 
@@ -101,7 +102,8 @@ public class PersonTest {
                 null,
                 ALICE.getTelegram(),
                 ALICE.getBirthday(),
-                ALICE.getTags());
+                ALICE.getTags(),
+                ALICE.getFreeTime());
         assertFalse(ALICE.equals(aliceCopyWithoutRoomNumber));
         assertFalse(aliceCopyWithoutRoomNumber.equals(ALICE));
 
@@ -112,7 +114,8 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 null,
                 ALICE.getBirthday(),
-                ALICE.getTags());
+                ALICE.getTags(),
+                ALICE.getFreeTime());
         assertFalse(ALICE.equals(aliceCopyWithoutTelegram));
         assertFalse(aliceCopyWithoutTelegram.equals(ALICE));
 
@@ -123,7 +126,8 @@ public class PersonTest {
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
                 null,
-                ALICE.getTags());
+                ALICE.getTags(),
+                ALICE.getFreeTime());
         assertFalse(ALICE.equals(aliceCopyWithoutBirthday));
         assertFalse(aliceCopyWithoutBirthday.equals(ALICE));
     }

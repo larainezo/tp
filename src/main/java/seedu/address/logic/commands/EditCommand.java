@@ -10,7 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -108,9 +110,11 @@ public class EditCommand extends Command {
         Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         Set<FreeTimeTag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        HashMap<String, ArrayList<String>> updatedFreeTime = editPersonDescriptor.getFreeTime()
+                .orElse(personToEdit.getFreeTime());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedRoomNumber, updatedTelegram,
-                updatedBirthday, updatedTags);
+                updatedBirthday, updatedTags, updatedFreeTime);
     }
 
     @Override
@@ -149,6 +153,7 @@ public class EditCommand extends Command {
         private Telegram telegram;
         private Birthday birthday;
         private Set<FreeTimeTag> tags;
+        private HashMap<String, ArrayList<String>> freeTime;
         public EditPersonDescriptor() {}
 
         /**
@@ -163,13 +168,14 @@ public class EditCommand extends Command {
             setTelegram(toCopy.telegram);
             setBirthday(toCopy.birthday);
             setTags(toCopy.tags);
+            setFreeTime(toCopy.freeTime);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, roomNumber, telegram, birthday, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, roomNumber, telegram, birthday, tags, freeTime);
         }
 
         public void setName(Name name) {
@@ -237,6 +243,24 @@ public class EditCommand extends Command {
             return Optional.ofNullable(tags).map(Collections::unmodifiableSet);
         }
 
+        /**
+         * Sets {@code freeTime} to this object's {@code freeTime}.
+         * A defensive copy of {@code freeTime} is used internally.
+         */
+        public void setFreeTime(HashMap<String, ArrayList<String>> freeTime) {
+            this.freeTime = (freeTime != null) ? new HashMap<>(freeTime) : null;
+        }
+
+
+        /**
+         * Returns a freeTime HashSet, which throws {@code UnsupportedOperationException} if modification is attempted.
+         */
+
+        public Optional<HashMap<String, ArrayList<String>>> getFreeTime() {
+            return Optional.ofNullable(freeTime);
+        }
+
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -255,7 +279,8 @@ public class EditCommand extends Command {
                     && Objects.equals(roomNumber, otherEditPersonDescriptor.roomNumber)
                     && Objects.equals(telegram, otherEditPersonDescriptor.telegram)
                     && Objects.equals(birthday, otherEditPersonDescriptor.birthday)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(freeTime, otherEditPersonDescriptor.freeTime);
         }
 
         @Override
@@ -268,6 +293,7 @@ public class EditCommand extends Command {
                     .add("telegram", telegram)
                     .add("birthday", birthday)
                     .add("freeTimeTags", tags)
+                    .add("freeTime", freeTime)
                     .toString();
         }
     }

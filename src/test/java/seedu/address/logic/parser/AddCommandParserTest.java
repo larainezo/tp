@@ -15,6 +15,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOMNUMBER_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -52,9 +54,24 @@ public class AddCommandParserTest {
         Telegram telegram = null;
         Birthday birthday = new Birthday(VALID_BIRTHDAY_BOB);
         Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Wed:1400-2000"));
+        HashMap<String, ArrayList<String>> freeTimeHashMap = new HashMap<>() {
+            {
+                put("Mon", new ArrayList<>());
+                put("Tue", new ArrayList<>());
+                put("Wed", new ArrayList<>());
+                put("Thu", new ArrayList<>());
+                put("Fri", new ArrayList<>());
+                put("Sat", new ArrayList<>());
+                put("Sun", new ArrayList<>());
+            }
+        };
+        ArrayList<String> newTime = freeTimeHashMap.get("Wed");
+        newTime.add("1400-2000");
+        freeTimeHashMap.put("Wed", newTime);
 
 
-        Person expectedPerson = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag);
+        Person expectedPerson = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag,
+                freeTimeHashMap);
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB

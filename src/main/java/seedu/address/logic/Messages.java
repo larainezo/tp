@@ -61,6 +61,10 @@ public class Messages {
             person.getTags().forEach(builder::append);
         }
 
+        if (!person.getFreeTime().isEmpty()) {
+            builder.append("; Free Time: ").append(person.getFreeTime());
+        }
+
         return builder.toString();
     }
 

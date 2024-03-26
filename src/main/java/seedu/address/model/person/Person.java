@@ -2,7 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -26,11 +28,12 @@ public class Person {
     private final Telegram telegram;
     private final Birthday birthday;
     private final Set<FreeTimeTag> tags = new HashSet<>();
+    private final HashMap<String, ArrayList<String>> freeTime;
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, RoomNumber roomNumber, Telegram telegram, Birthday birthday,
-                  Set<FreeTimeTag> tags) {
+                  Set<FreeTimeTag> tags, HashMap<String, ArrayList<String>> freeTime) {
         requireAllNonNull(name, phone, tags);
         this.name = name;
         this.phone = phone;
@@ -39,6 +42,7 @@ public class Person {
         this.telegram = telegram;
         this.birthday = birthday;
         this.tags.addAll(tags);
+        this.freeTime = freeTime;
     }
 
     public Name getName() {
@@ -72,6 +76,16 @@ public class Person {
     public Set<FreeTimeTag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+
+    public HashMap<String, ArrayList<String>> getFreeTime() {
+        return this.freeTime;
+    }
+
 
     /**
      * Returns true if both persons have the same name.

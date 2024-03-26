@@ -2,6 +2,8 @@ package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -34,8 +36,22 @@ public class MessagesTest {
         Telegram telegram = new Telegram("Johnny");
         Birthday birthday = new Birthday("01-01-2000");
         Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Sun:1000-1400"));
+        HashMap<String, ArrayList<String>> freeTimeHashMap = new HashMap<>() {
+            {
+                put("Mon", new ArrayList<>());
+                put("Tue", new ArrayList<>());
+                put("Wed", new ArrayList<>());
+                put("Thu", new ArrayList<>());
+                put("Fri", new ArrayList<>());
+                put("Sat", new ArrayList<>());
+                put("Sun", new ArrayList<>());
+            }
+        };
+        ArrayList<String> newTime = freeTimeHashMap.get("Sun");
+        newTime.add("1000-1400");
+        freeTimeHashMap.put("Sun", newTime);
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag);
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag, freeTimeHashMap);
         assertMessageSuccess(person, FORMATTED_ALL_FIELDS_MESSAGE);
     }
 
@@ -48,8 +64,22 @@ public class MessagesTest {
         Telegram telegram = null;
         Birthday birthday = null;
         Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Sun:1000-1400"));
+        HashMap<String, ArrayList<String>> freeTimeHashMap = new HashMap<>() {
+            {
+                put("Mon", new ArrayList<>());
+                put("Tue", new ArrayList<>());
+                put("Wed", new ArrayList<>());
+                put("Thu", new ArrayList<>());
+                put("Fri", new ArrayList<>());
+                put("Sat", new ArrayList<>());
+                put("Sun", new ArrayList<>());
+            }
+        };
+        ArrayList<String> newTime = freeTimeHashMap.get("Sun");
+        newTime.add("1000-1400");
+        freeTimeHashMap.put("Sun", newTime);
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag);
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag, freeTimeHashMap);
         assertMessageSuccess(person, FORMATTED_ALL_MANDATORY_FIELDS_MESSAGE);
     }
 
@@ -62,8 +92,22 @@ public class MessagesTest {
         Telegram telegram = null;
         Birthday birthday = new Birthday("01-01-2000");
         Set<FreeTimeTag> freeTimeTag = Set.of(new FreeTimeTag("Sun:1000-1400"));
+        HashMap<String, ArrayList<String>> freeTimeHashMap = new HashMap<>() {
+            {
+                put("Mon", new ArrayList<>());
+                put("Tue", new ArrayList<>());
+                put("Wed", new ArrayList<>());
+                put("Thu", new ArrayList<>());
+                put("Fri", new ArrayList<>());
+                put("Sat", new ArrayList<>());
+                put("Sun", new ArrayList<>());
+            }
+        };
+        ArrayList<String> newTime = freeTimeHashMap.get("Sun");
+        newTime.add("1000-1400");
+        freeTimeHashMap.put("Sun", newTime);
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag);
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTag, freeTimeHashMap);
         assertMessageSuccess(person, FORMATTED_ALL_MANDATORY_AND_SOME_OPTIONAL_FIELDS_MESSAGE);
     }
 

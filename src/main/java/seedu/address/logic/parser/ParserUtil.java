@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FreeTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
@@ -145,6 +148,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static FreeTime parseFreeTime(String freeTime) throws ParseException {
+        requireNonNull(freeTime);
+        String trimmedFreeTime = freeTime.trim();
+        if (!FreeTime.isValidFreeTime(trimmedFreeTime)) {
+            throw new ParseException(FreeTime.MESSAGE_CONSTRAINTS);
+        }
+        return new FreeTime(trimmedFreeTime);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<FreeTimeTag> parseFreeTimeTags(Collection<String> tags) throws ParseException {
@@ -154,5 +172,35 @@ public class ParserUtil {
             tagSet.add(parseFreeTimeTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static HashMap<String, ArrayList<String>> parseFreeTimes(Collection<String> tags) throws ParseException {
+        final HashMap<String, ArrayList<String>> freeTimeHashMap = new HashMap<>() {
+            {
+                put("Mon", new ArrayList<>());
+                put("Tue", new ArrayList<>());
+                put("Wed", new ArrayList<>());
+                put("Thu", new ArrayList<>());
+                put("Fri", new ArrayList<>());
+                put("Sat", new ArrayList<>());
+                put("Sun", new ArrayList<>());
+            }
+        };
+
+        Set<FreeTimeTag> freeTimeTags = parseFreeTimeTags(tags);
+
+        for (FreeTimeTag tag : freeTimeTags) {
+            FreeTime freeTime = parseFreeTime(tag.toString());
+            String day = freeTime.getDayValue();
+            String time = freeTime.getTimeValue();
+            ArrayList<String> timeList = freeTimeHashMap.get(day);
+            timeList.add(time);
+            freeTimeHashMap.put(day, timeList);
+        }
+
+        return freeTimeHashMap;
     }
 }
