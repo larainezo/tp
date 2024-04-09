@@ -17,10 +17,10 @@ Dormie is a **desktop app for managing contacts, optimized for use via a Command
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME r/ROOM_NUM​` <br> e.g., `add Alice Lim r/02-03`
+**Add**    | `add n/NAME p/PHONENUMBER` <br> e.g., `add n/Alice Lim p/91234567`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [r/ROOM_NUM​]​`<br> e.g.,`edit 1 n/Alex r/05-11`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONENUMBER]`<br> e.g.,`edit 1 n/Alex p/98765432`
 **Exit**   | `exit`
 **Find**   | `find KEYWORD`<br> e.g., `find Alice`
 **Help**   | `help`
@@ -32,23 +32,22 @@ Action     | Format, Examples
 ---
 
 ## Using This User Guide
-### Text Types
+### Command Format
 Type                                | What it means
 -----------                         |----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Bold**                            | Command word <br> e.g., **add**, which adds a new contact
-`Code Block`                        | A line of command that can be entered into Dormie's input field <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`
-\<value\>                           | Value for the respective field <br> e.g., `add n/<name> p/<phoneNumber> e/<email> r/<roomNumber> t/<telegramHandle> b/<birthday>`
-\[optionalField\]                   | Indicates an optional field <br> e.g., `add n/<name> [t/<telegramHandle>]`, where telegramHandle is an optional field.
+`Code Block`                        | A line of command that can be entered into Dormie's input field. <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com r/sw-01-01 t/johnDoe b/12/12/2000 ft/Mon:1300-1400`.
+Words in `UPPER_CASE`               | The parameters to be supplied by the user. <br> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+\[optionalField\]                   | Items in square brackets are optional. <br> e.g `n/NAME [ft/FREETIMETAG]` can be used as `n/John Doe ft/Mon:1300-1400` or as `n/John Doe`.
+Free Time Tag format                | Free Time Tags are in the following format: `DDD:HHmm-HHmm`. <br> `DDD` is from Mon-Sun, `HHmm` is 24 hour time format <br> e.g. **Mon:1300-1400**.
+Order of Parameters                 | Parameters can be in any order. <br> e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+Extraneous Parameters               | Extraneous parameters for commands that do not take in parameters (such as `list`) will be ignored. <br> e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+Copying and Pasting from this User Guide | If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 ### Searching for Keywords (Ctrl-F)
 1. Press the Ctrl + F keys on your keyboard.
-2. A search bar or dialog box should appear on your screen.
-3. Type the keyword or phrase you want to search for in the search bar or dialog box.
-4. Press Enter or click on the "Find" button to start the search.
-5. The document viewer or web browser will highlight all instances of the keyword or phrase found within the document.
-6. To navigate through the search results, you can use the arrow buttons or options provided by the search feature.
-7. Once you have finished reviewing the search results, you can close the search bar or dialog box to return to your document.
-
+2. A search bar or dialog box should appear on your screen. A screenshot is shown below.
+![Screenshot of search bar](images\ctrl-F.png)
+3. Type the keyword or phrase you want to search for in the search bar and press enter.
 ---
 
 ## Quick start
@@ -69,22 +68,23 @@ Type                                | What it means
 
    - MacOS:
      1. Right click the _Home Folder_
-     1. Left click `New Terminal at Folder`
+     2. Left click `Services`
+     3. Then, click `New Terminal at Folder`
    - Windows:
      1. Navigate into the _Home Folder_
-     1. Right click anywhere inside the _Home Folder_
-     1. Left click `Open in Windows Terminal`
+     2. Right click anywhere inside the _Home Folder_
+     3. Left click `Open in Windows Terminal`
 
-1. Past this Command into the new terminal window `java -jar dormie.jar` and press enter.<br>
+1. Paste this Command into the new terminal window `java -jar dormie.jar` and press enter.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it.<br>
    Quick Tutorial:
 
-   - `add n/John Doe n/sw-01-01` : Adds a contact named `John Doe` to Dormie.
+   - `add n/John Doe p/98765432 ` : Adds a contact named `John Doe` to Dormie with the specified phone number
 
-   - `find John` : Finds a contact with `John` in his name.
+   - `find John` : Finds a contact with `John` in his name. 
 
    - `delete 1` : Deletes the 1st contact shown in the current list.
 
@@ -96,30 +96,6 @@ or to [Command Summary](#command-summary) for a summary of the commands.
 ---
 
 ## Features
-
-<box type="info" seamless>
-
-**Notes about the command format:**<br>
-
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-- Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-- Free Time Tags are in the following format: `DDD:HHmm-HHmm` <br>
-- `DDD` is from Mon-Sun, `HHmm` is 24 hour time format <br>
-  e.g. **Mon:1300-1400**
-
-- Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-- Extraneous parameters for commands that do not take in parameters (such as `list`) will be ignored.<br>
-  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
-
-- If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-  </box>
-
 ### Adding a person: add
 
 Creates a new contact for a dorm mate.
@@ -233,9 +209,17 @@ Furthermore, certain edits can cause the Dormie to behave in unexpected ways (e.
 
 ## Glossary
 
-| Term                                  | Definition, Examples                                                                                                                                                                                                                                                                            |
-|---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Command**                           | Instruction provided by a user to specify the desired action or change to be performed by an application.                                                                                                                                                                                       |
-| **Command Line Interface (CLI)**      | Text-based interface used to interact with the application by typing commands into a command box.                                                                                                                                                                                               |
-| **Graphical User Interface (GUI)**    | User interface that allows users to interact with graphical icons and visual indicators, use graphical elements such as windows, buttons, menus, and dialog boxes to facilitate user interaction with the application.                                                                          |
+| Term                                | Definition, Examples                                                                                                                                                                                                                                                                            |
+|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Command**                         | Instruction provided by a user to specify the desired action or change to be performed by an application.                                                                                                                                                                                       |
+| **Command Line Interface (CLI)**    | Text-based interface used to interact with the application by typing commands into a command box.                                                                                                                                                                                               |
+| **Graphical User Interface (GUI)**  | User interface that allows users to interact with graphical icons and visual indicators, use graphical elements such as windows, buttons, menus, and dialog boxes to facilitate user interaction with the application.                                                                          |
 | **JavaScript Object Notation (JSON)** | Lightweight data interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is based on key-value pairs and data structures, making it a popular format for representing structured data in web development and other programming contexts. |
+| **Web Browser**                     | Software application used to access information on the World Wide Web. Examples include Google Chrome, Mozilla Firefox, and Microsoft Edge.                                                                                                                                                     |
+| **Document Viewer** | Software application used to view, read, and interact with documents in various formats, such as PDF, Word, Excel, and PowerPoint files. Examples include Adobe Acrobat Reader, Microsoft Word, and Google Docs. |
+| **Java** | General-purpose, class-based, object-oriented programming language designed to have as few implementation dependencies as possible. Java is widely used for developing applications, including desktop, web, and mobile applications. |
+| **MacOS** | Operating system developed by Apple Inc. for its Macintosh line of computers. MacOS is known for its user-friendly interface, stability, and security features. |
+| **Windows** | Operating system developed by Microsoft Corporation for personal computers. Windows is known for its graphical user interface, multitasking capabilities, and compatibility with a wide range of software applications. |
+| **Home Folder** | Main directory or folder where an application is installed or resides. The home folder typically contains the application's executable files, configuration files, and data files. |
+| **Terminal** | Command-line interface used to interact with the operating system by typing commands. The terminal allows users to execute commands, run scripts, and perform various system tasks. |
+| **Parameter** | Value or variable that is passed to a command or function to specify the desired action or behavior. Parameters are used to customize the behavior of commands and functions based on user input. |
