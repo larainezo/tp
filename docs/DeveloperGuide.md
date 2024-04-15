@@ -571,7 +571,7 @@ When `Default Person List` is mentioned, it refers the the default persons which
 
     1. Prerequisites: Open the application with the `Default Person List`.
 
-    1. Test case: `Edit 1 n/Palex Yeoh`<br>
+    1. Test case: `edit 1 n/Palex Yeoh`<br>
     Expected: Contact, `Alex Yeoh`, is edited. Details of the edited contact shown in the status message.<br>
     Status Message:<br>`Edited person: Palex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Room Number: 21-06-40; Telegram: alexYeoh; Birthday: 03 February 2000; Dorm Tag: [PGPR]; Free Time Tags: [Tue:0700-2100]`
 
@@ -616,7 +616,7 @@ When `Default Person List` is mentioned, it refers the the default persons which
     Expected: No contacts are shown. Number of contacts are shown in the status message.<br>
     Status Message:<br>`0 persons listed!`
 
-    1. Test case: `whoisfree Tue:060`<br>
+    1. Test case: `whoisfree Tue:0600`<br>
     Expected: The shown contacts do not change. Error is shown in the status message.<br>
     Status Message:<br>`Invalid command format! whoisfree: Finds all persons who are free given by the specified timestamp (case-insensitive) and displays them as a list with index numbers.Parameters: TIME STAMP`
 
@@ -628,7 +628,7 @@ When `Default Person List` is mentioned, it refers the the default persons which
 
 1. Dealing with missing/corrupted data files
 
-    1. Prerequisites: `data` folder with default `dormie.json` in the same directory as `Dormie.jar`. To get this, delete the data file, open the app, run the command `list`, then close the app.
+    1. Prerequisites: `data` folder with default `dormie.json` in the same directory as `dormie.jar`. To get this, delete the data file, open the app, run the command `list`, then close the app.
 
     1. Test case: Append a lone `(` to the end of a valid `dormie.json` file and launch `dormie.jar`.<br>
     Expected: Dormie loads with no contacts.
@@ -640,10 +640,10 @@ When `Default Person List` is mentioned, it refers the the default persons which
 
     1. Prerequisites: `data` folder with default `dormie.json` in the same directory as `Dormie.jar`. To get this, delete the data file, open the app, run the command `list`, then close the app.
 
-    1. Test case: For the person with `name: "Alex Yeoh"`, replace `2024` with `2022`.<br>
+    1. Test case: For the person with `name: "Alex Yeoh"`, replace `21-06-40 2024-04-12` with `21-06-40 2022-04-12`.<br>
     Expected: Dormie loads the `Default Person List`, but `Alex Yeoh` has the indicator icon `calendar_alert`.
 
-    1. Test case: For the person with `name: "Bernice Yu"`, replace `2024` with `2026`.<br>
+    1. Test case: For the person with `name: "Bernice Yu"`, replace `21-07-18 2024-04-12` with `21-07-18 2026-04-12`.<br>
     Expected: Dormie loads with no contacts.
 
     1. The effects of the test cases above reflect the effects of last modified room number date on the validity of the data and the icon behaviour.
