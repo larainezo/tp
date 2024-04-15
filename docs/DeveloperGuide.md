@@ -190,15 +190,7 @@ Given below is an example usage scenario and how the add free time mechanism beh
 
 Step 1. The user launches the application for the first time. The person list of Dormie will be loaded with the `Default Person List`.
 
-Step 2. The user executes `add n/Jane …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 3. The user now wants to add another free time for a friend, and does so by executing the `addTime [index] ft/Wed:1000-1100` command. The `addTime` command, after successfully passing the parser, will retrieve the current FreeTimeTags HashSet. It will then append, in order of day, the new free time to the HashSet. That is, the new free time 1000-1100 on Wednesday will be appended just after timings that fall before Wednesday 1000.
+Step 2. The user now wants to add another free time for a friend, and does so by executing the `addTime [index] ft/Wed:1000-1100` command. The `addTime` command, after successfully passing the parser, will retrieve the current FreeTimeTags HashSet. It will then append, in order of day, the new free time to the HashSet. That is, the new free time 1000-1100 on Wednesday will be appended just after timings that fall before Wednesday 1000.
 
 Note: The user can add multiple free times at the same time by using multiple `ft/` flags in the command. An example is `addTime [index] ft/Wed:1000-1100 ft/Thu:1200-1400...`. The current code implementation will loop through the freeTime HashSet n times, with n being the number of free time tags to be added.
 </box>
@@ -223,7 +215,7 @@ The following sequence diagram shows how an addFreeTime operation goes through t
 
 #### Implementation
 
-The delete free time mechanism is a version of the `addFreeTimeCommand`. Instead of adding free time tags to the contact's freeTimeTags HashSet, the `DeleteTimeCommand` removes tags that match the requested tag from the current freeTimeTags hashset.
+The delete free time mechanism is a version of the `AddTimeCommand`. Instead of adding free time tags to the contact's freeTimeTags HashSet, the `DeleteTimeCommand` removes tags that match the requested tag from the current freeTimeTags hashset.
 
 Given below is an example usage scenario and how the delete free time mechanism behaves at each step.
 
@@ -236,6 +228,10 @@ Step 3. However, the user realises a mistake has been made and needs to remove t
 Note: The user can delete multiple free times at the same time by using multiple `ft/` flags in the command. An example is `deleteTime [index] ft/Wed:1000-1100 ft/Thu:1200-1400...`. The current code implementation will loop through the freeTime HashSet n times, with n being the number of free time tags to be deleted.
 </box>
 
+The following sequence diagram shows how an addFreeTime operation goes through the `Logic` component:
+
+<puml src="diagrams/DeleteFreeTimeSequenceDiagram-Logic.puml" alt="DeleteFreeTimeSequenceDiagram-Logic" />
+
 #### Design Considerations:
 
 **Aspect: How delete free time executes:**
@@ -247,10 +243,6 @@ Note: The user can delete multiple free times at the same time by using multiple
 * **Alternative 2:** Delete from the HashSet and
     * Pros: More convenient if the user wants to delete multiple free times at once. For example, `deleteTime [index] ft/Wed:1000-1200` will delete the `Wed:1000-1100` and `Wed:1100-1200` free time tags.
     * Cons: Could introduce more bugs that are more challenging to resolve in a short period of time (Given the current time constraints).
-
-The following sequence diagram shows how an addFreeTime operation goes through the `Logic` component:
-
-<puml src="diagrams/DeleteFreeTimeSequenceDiagram-Logic.puml" alt="DeleteFreeTimeSequenceDiagram-Logic" />
 
 ### Find Free Person Command
 
