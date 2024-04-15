@@ -27,6 +27,8 @@ It can also help regular users refresh their memory if they forget any of the co
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 <!-- * Table of Contents -->
 <page-nav-print />
 
@@ -42,6 +44,8 @@ It can also help regular users refresh their memory if they forget any of the co
 - **Copying and Pasting from this User Guide** <br> If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -80,6 +84,8 @@ It can also help regular users refresh their memory if they forget any of the co
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## Navigating the User Interface
 
 ![UiLabeled](images/UiLabeled.jpeg)
@@ -92,9 +98,11 @@ It can also help regular users refresh their memory if they forget any of the co
 
 1. **Person Card:** Where details of a person are displayed.
 
-1. **Person List:** Where a collection person cards are displayed.s
+1. **Person List:** Where a collection person cards are displayed.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
@@ -114,6 +122,8 @@ It can also help regular users refresh their memory if they forget any of the co
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## Format for Fields
 | Field           | Format                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -128,6 +138,8 @@ It can also help regular users refresh their memory if they forget any of the co
 | Timestamp       | `DDD:HHmm`. <br> `DDD` is from Mon-Sun (case-sensitive), `HHmm` is 24 hour time format. <br> e.g. `Mon:1300`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -313,6 +325,8 @@ Shows up next to a contact when the contact's birthday is today. If the birthday
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Dormie home folder.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
