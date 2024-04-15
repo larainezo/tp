@@ -46,8 +46,8 @@ It can also help regular users refresh their memory if they forget any of the co
 ## Quick start
 
 1. Ensure you have Java `11` installed in your Computer.
-    - MacOS: [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
-    - Windows: [Java 11](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx#zulu)
+    - MacOS: [Java 11](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx#zulu)
+    - Windows: [Java 11](https://www.oracle.com/java/technologies/downloads/#java11-windows)
 
 1. Download the latest `dormie.jar` from [here](https://github.com/AY2324S2-CS2103T-F11-4/tp/releases).
 
@@ -58,8 +58,7 @@ It can also help regular users refresh their memory if they forget any of the co
 1. Open a command terminal (`Terminal` for MacOS, or `Windows Terminal` for Windows).
     - MacOS:
         1. Right click the _Home Folder_.
-        2. Left click `Services`.
-        3. Then, click `New Terminal at Folder`.
+        2. Then, click `New Terminal at Folder`. If not found, try to left click `Services` to show (depends on MacOS version).
     - Windows:
         1. Navigate into the _Home Folder_.
         2. Right click anywhere inside the _Home Folder_.
@@ -73,7 +72,7 @@ It can also help regular users refresh their memory if they forget any of the co
    Quick Tutorial:
     - `add n/John Doe p/98765432 ` : Adds a contact named `John Doe` to Dormie with the specified phone number.
     - `find John` : Finds a contact with `John` in his name.
-    - `delete 1` : Deletes the 1st contact shown in the current list.
+    - `delete 1` : Deletes the first contact shown in the current list.
     - `list` : Lists all contacts again.
 
 1. Refer to [Features](#features) below for details of each command
@@ -131,6 +130,7 @@ e.g. `edit INDEX [ft/FREE_TIME_TAG]...` can be used as `edit 1 ft/` or `edit 1 f
 * Parameters can be in any order (except `INDEX`). <br> e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 * Extraneous parameters for commands that do not take in parameters (such as `list`) will be ignored. <br> e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 * Command keywords are case-sensitive. Command keywords for the commands should be exactly the same as demonstration, or else Dormie would not recognize it. <br> e.g. `add` is the command keyword in the add command, where `Add` or `ADD` will not work.
+* When a command is invalid or fails, the error message will guide you to a valid command. You may also want to refer to some details of the command in this user guide to help troubleshoot.
 
 </div>
 
@@ -300,15 +300,16 @@ Shows up next to a contact when the contact's birthday is today. If the birthday
 
 ## Glossary
 
-| Term                                | Definition, Examples                                                                                                                                                                                                                                                                            |
-|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Command**                         | Instruction provided by a user to specify the desired action or change to be performed by an application.                                                                                                                                                                                       |
-| **Command Line Interface (CLI)**    | Text-based interface used to interact with the application by typing commands into a command box.                                                                                                                                                                                               |
-| **Graphical User Interface (GUI)**  | User interface that allows users to interact with graphical icons and visual indicators, use graphical elements such as windows, buttons, menus, and dialog boxes to facilitate user interaction with the application.                                                                          |
+| Term                                  | Definition, Examples                                                                                                                                                                                                                                                                            |
+|---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Command**                           | Instruction provided by a user to specify the desired action or change to be performed by an application.                                                                                                                                                                                       |
+| **Command Line Interface (CLI)**      | Text-based interface used to interact with the application by typing commands into a command box.                                                                                                                                                                                               |
+| **Graphical User Interface (GUI)**    | User interface that allows users to interact with graphical icons and visual indicators, use graphical elements such as windows, buttons, menus, and dialog boxes to facilitate user interaction with the application.                                                                          |
+| **Home Folder**                       | Main directory or folder where an application is installed or resides. The home folder typically contains the application's executable files, configuration files, and data files.                                                                                                              |
 | **JavaScript Object Notation (JSON)** | Lightweight data interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is based on key-value pairs and data structures, making it a popular format for representing structured data in web development and other programming contexts. |
-| **Java** | General-purpose, class-based, object-oriented programming language designed to have as few implementation dependencies as possible. Java is widely used for developing applications, including desktop, web, and mobile applications.                                                           |
-| **MacOS** | Operating system developed by Apple Inc. for its Macintosh line of computers. MacOS is known for its user-friendly interface, stability, and security features.                                                                                                                                 |
-| **Windows** | Operating system developed by Microsoft Corporation for personal computers. Windows is known for its graphical user interface, multitasking capabilities, and compatibility with a wide range of software applications.                                                                         |
-| **Home Folder** | Main directory or folder where an application is installed or resides. The home folder typically contains the application's executable files, configuration files, and data files.                                                                                                              |
-| **Terminal** | Command-line interface used to interact with the operating system by typing commands. The terminal allows users to execute commands, run scripts, and perform various system tasks.                                                                                                             |
-| **Parameter** | Value or variable that is passed to a command or function to specify the desired action or behavior. Parameters are used to customize the behavior of commands and functions based on user input.                                                                                               |
+| **Java**                              | General-purpose, class-based, object-oriented programming language designed to have as few implementation dependencies as possible. Java is widely used for developing applications, including desktop, web, and mobile applications.                                                           |
+| **MacOS**                             | Operating system developed by Apple Inc. for its Macintosh line of computers. MacOS is known for its user-friendly interface, stability, and security features.                                                                                                                                 |
+| **Parameter**                         | Value that is passed to a command to specify the desired action or behavior. Parameters are used to customize the behavior of commands based on user input.                                                                                                                                     |
+| **Portable Document Format (PDF)**    | File format created by Adobe that gives people an easy, reliable way to present and exchange documents.                                                                                                                                                                                         |
+| **Terminal**                          | Command-line interface used to interact with the operating system by typing commands. The terminal allows users to execute commands, run scripts, and perform various system tasks.                                                                                                             |
+| **Windows**                           | Operating system developed by Microsoft Corporation for personal computers. Windows is known for its graphical user interface, multitasking capabilities, and compatibility with a wide range of software applications.                                                                         |
