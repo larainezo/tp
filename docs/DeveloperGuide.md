@@ -240,7 +240,7 @@ The following sequence diagram shows how an addFreeTime operation goes through t
     * Pros: Causes fewer bugs and the main functionality is still met.
     * Cons: User input will need to accurately match the free time tag to be deleted.
 
-* **Alternative 2:** Delete from the HashSet and
+* **Alternative 2:** Delete from the HashSet if time interval falls within the person's free time.
     * Pros: More convenient if the user wants to delete multiple free times at once. For example, `deleteTime [index] ft/Wed:1000-1200` will delete the `Wed:1000-1100` and `Wed:1100-1200` free time tags.
     * Cons: Could introduce more bugs that are more challenging to resolve in a short period of time (Given the current time constraints).
 
